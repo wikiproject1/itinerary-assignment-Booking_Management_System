@@ -1,0 +1,23 @@
+{
+    "name": "chipmunk-tech/travel-management-system",
+    "description": "A comprehensive travel management system for tourism industry",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Alvin Chipmunk",
+            "email": "alvinchipmunk196@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=7.4",
+        "erusev/parsedown": "^1.7",
+        "tecnickcom/tcpdf": "^6.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}

@@ -12,13 +12,12 @@ $upcoming_arrivals = [];
 $today = date('Y-m-d');
 $three_days_later = date('Y-m-d', strtotime('+3 days'));
 
-$sql = "SELECT i.*, g.first_name, g.last_name 
+$sql = "SELECT i.*, g.name as guide_name 
         FROM itineraries i 
-        LEFT JOIN guide_assignments ga ON i.id = ga.itinerary_id 
-        LEFT JOIN guides g ON ga.guide_id = g.id 
-        WHERE i.arrival_time BETWEEN ? AND ? 
-        AND i.completion_status = 'Pending'
-        ORDER BY i.arrival_time ASC 
+        LEFT JOIN guides g ON i.guide_id = g.id 
+        WHERE i.start_date BETWEEN ? AND ? 
+        AND i.status = 'pending'
+        ORDER BY i.start_date ASC 
         LIMIT 3";
 
 if($stmt = mysqli_prepare($conn, $sql)){
@@ -824,8 +823,8 @@ if($stmt = mysqli_prepare($conn, $sql)){
                                             <div class="fw-bold"><?php echo htmlspecialchars($arrival['group_name']); ?></div>
                                             <small class="text-muted">
                                                 Arriving: <?php echo date('M d, Y', strtotime($arrival['arrival_time'])); ?><br>
-                                                <?php if($arrival['first_name']): ?>
-                                                Guide: <?php echo htmlspecialchars($arrival['first_name'] . ' ' . $arrival['last_name']); ?>
+                                                <?php if($arrival['guide_name']): ?>
+                                                Guide: <?php echo htmlspecialchars($arrival['guide_name']); ?>
                                                 <?php else: ?>
                                                 <span class="text-warning">No guide assigned</span>
                                                 <?php endif; ?>
@@ -937,8 +936,8 @@ if($stmt = mysqli_prepare($conn, $sql)){
                                                     <td><?php echo htmlspecialchars($arrival['starting_location']); ?></td>
                                                     <td><?php echo htmlspecialchars($arrival['final_destination']); ?></td>
                                                     <td>
-                                                        <?php if($arrival['first_name']): ?>
-                                                            <?php echo htmlspecialchars($arrival['first_name'] . ' ' . $arrival['last_name']); ?>
+                                                        <?php if($arrival['guide_name']): ?>
+                                                            <?php echo htmlspecialchars($arrival['guide_name']); ?>
                                                         <?php else: ?>
                                                             <span class="badge bg-warning text-dark">Not Assigned</span>
                                                         <?php endif; ?>
