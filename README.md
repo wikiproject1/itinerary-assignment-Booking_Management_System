@@ -95,4 +95,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-For support, please email alvinchipmunk196@gmail.com or visit [chipmunk-tech.com](http://chipmunk-tech.com). 
+
+For support, please email alvinchipmunk196@gmail.com or visit [chipmunk-tech](https://github.com/wikiproject1). 
